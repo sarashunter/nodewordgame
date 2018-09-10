@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/sarashunter/nodewordgame/issues"
   },
-  "homepage": "https://github.com/sarashunter/nodewordgame#readme"
+  "homepage": "https://github.com/sarashunter/nodewordgame#readme",
+  "dependencies": {
+    "inquirer": "^6.2.0"
+  }
 }
