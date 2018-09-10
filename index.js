@@ -4,10 +4,20 @@ var Word = require('./Word');
 var randomWordsArray = ['cat'];
 
 var randomWord = randomWordsArray[0];
-
 var currentWordObject = new Word(randomWord);
 
 console.log(currentWordObject.currentState());
+
+function round(){
+
+    if(!currentWordObject.checkWord()){
+        turn();
+    }else{
+        console.log("new round?");
+    }
+}
+
+round();
 
 function turn() {
     inquirer.prompt([
@@ -26,5 +36,6 @@ You guessed: ${guess}
     `);
         currentWordObject.checkLetter(guess);
         console.log(currentWordObject.currentState());
+        round();
     }
 }
