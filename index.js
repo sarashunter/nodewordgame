@@ -9,14 +9,22 @@ var currentWordObject = new Word(randomWord);
 
 console.log(currentWordObject.currentState());
 
-inquirer.prompt([
-    {
-        type: 'input',
-        message: 'Whats your letter guess?',
-        name: 'guess'
+function turn() {
+    inquirer.prompt([
+        {
+            type: 'input',
+            message: 'Guess a letter:',
+            name: 'guess'
+        }
+    ]).then(function (response) {
+        displayGuess(response.guess);
+    })
+
+    var displayGuess = function (guess) {
+        console.log(`
+You guessed: ${guess}
+    `);
+        currentWordObject.checkLetter(guess);
+        console.log(currentWordObject.currentState());
     }
-]).then(function(response){
-    console.log("You guessed: " + response.guess);
-    currentWordObject.checkLetter(response.guess);
-    console.log(currentWordObject.currentState());
-})
+}

@@ -14,9 +14,20 @@ var Word = function (wordToGuess) {
         return currentString;
     };
     this.checkLetter = function (guess) {
+
         this.lettersArray.forEach(function (element) {
             element.checkLetter(guess);
         })
+    };
+    this.checkWord = function (guess){
+
+        var wordGuessed = true;
+        this.lettersArray.forEach(function(element){
+            if(!element.isGuessed){
+                wordGuessed = false;
+            }
+        })
+        return wordGuessed;
     }
 }
 
