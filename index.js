@@ -8,34 +8,39 @@ var currentWordObject = new Word(randomWord);
 
 console.log(currentWordObject.currentState());
 
-function round(){
+function round() {
 
-    if(!currentWordObject.checkWord()){
+    if (!currentWordObject.checkWord()) {
         turn();
-    }else{
+    } else {
         console.log("new round?");
     }
 }
 
-round();
+turn();
 
 function turn() {
-    inquirer.prompt([
-        {
-            type: 'input',
-            message: 'Guess a letter:',
-            name: 'guess'
-        }
-    ]).then(function (response) {
-        displayGuess(response.guess);
-    })
+    if (!currentWordObject.checkWord()) {
 
-    var displayGuess = function (guess) {
-        console.log(`
+        inquirer.prompt([
+            {
+                type: 'input',
+                message: 'Guess a letter:',
+                name: 'guess'
+            }
+        ]).then(function (response) {
+            displayGuess(response.guess);
+        })
+
+        var displayGuess = function (guess) {
+            console.log(`
 You guessed: ${guess}
     `);
-        currentWordObject.checkLetter(guess);
-        console.log(currentWordObject.currentState());
-        round();
+            currentWordObject.checkLetter(guess);
+            console.log(currentWordObject.currentState());
+            turn();
+        }
+    }else{
+        console.log("Word has been guessed");
     }
 }
