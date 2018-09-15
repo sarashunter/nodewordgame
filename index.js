@@ -1,7 +1,7 @@
 var inquirer = require('inquirer');
 var Word = require('./Word');
 
-var randomWordsArray = ['cat', 'dog', 'apple', 'banana'];
+var randomWordsArray = ['cat', 'dog', 'apple', 'banana', 'tubman','relink','orae','cadet','codon','rumbly','suffr','gwari','gaskin','verne','jill','vulgus','immix','victor','papua','cracow','unmiry','reen','tokay','tilda','seine','wooden','reroll','elvin','rep','cetura','jaur','rnas','glave','lassa','chalet','cityfy','outlip','weiss','phenix','tumaco','rhet','unicef','slater','eanes','assail','brie','birr','torpor','asat','zonda','algor','ahchoo','raise','beetle'];
 
 function game() {
     level();
