@@ -2,6 +2,7 @@ var Letter = require('./Letter');
 
 var Word = function (wordToGuess) {
     this.wordToGuess = wordToGuess;
+    this.wrongGuesses = 0;
     this.lettersArray = constructLettersArray(wordToGuess);
     this.currentState = function () {
         var currentString = "";
@@ -14,19 +15,35 @@ var Word = function (wordToGuess) {
         return currentString;
     };
     this.checkLetter = function (guess) {
+        var wasAnInstance = false;
 
         this.lettersArray.forEach(function (element) {
-            element.checkLetter(guess);
-        })
-    };
-    this.checkWord = function (guess){
-
-        var wordGuessed = true;
-        this.lettersArray.forEach(function(element){
-            if(!element.isGuessed){
-                wordGuessed = false;
+            var letterExists = element.checkLetter(guess);
+            if (letterExists) {
+                wasAnInstance = true;
             }
         })
+        if (!wasAnInstance) {
+            this.wrongGuesses += 1;
+            console.log("That letter isn't in the word.  Wrong guesses: " + this.wrongGuesses);
+            if (this.wrongGuesses >= 5) {
+                console.log("You ran out of guesses.");
+                // playAgain();
+            }
+        }
+    };
+    this.checkWord = function (guess) {
+
+        var wordGuessed = true;
+        if (this.wrongGuesses >= 5) {
+            wordGuessed = true;
+        } else {
+            this.lettersArray.forEach(function (element) {
+                if (!element.isGuessed) {
+                    wordGuessed = false;
+                }
+            })
+        }
         return wordGuessed;
     }
 }

@@ -9,9 +9,12 @@ var Letter = function(character){
         }
     }
     this.checkLetter = function(guessedLetter){
+        var wasCorrect=false;
         if(guessedLetter === this.character){
             this.isGuessed = true;
+            wasCorrect=true;
         }
+        return wasCorrect;
     }
 }
 

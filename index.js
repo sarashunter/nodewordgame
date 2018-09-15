@@ -3,10 +3,6 @@ var Word = require('./Word');
 
 var randomWordsArray = ['cat', 'dog', 'apple', 'banana'];
 
-// var randomWord = randomWordsArray[0];
-// var currentWordObject = new Word(randomWord);
-
-
 function game() {
     level();
 }
@@ -41,20 +37,23 @@ You guessed: ${guess}
             turn();
         }
     } else {
-        console.log("Word has been guessed");
-        inquirer.prompt([
-            {
-                type: 'list',
-                message: 'Play again?',
-                name: 'again',
-                choices: ['yes', 'no']
-            }
-        ]).then(function (response) {
-            if (response.again === 'yes') {
-                level();
-            }
-        })
+        playAgain();
     }
+}
+
+function playAgain(){
+    inquirer.prompt([
+        {
+            type: 'list',
+            message: 'Play again?',
+            name: 'again',
+            choices: ['yes', 'no']
+        }
+    ]).then(function (response) {
+        if (response.again === 'yes') {
+            level();
+        }
+    })
 }
 
 game();
